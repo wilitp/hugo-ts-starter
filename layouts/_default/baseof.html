@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {{$style := resources.Get "scss/index.scss" | resources.ExecuteAsTemplate "scss/index.scss" . | toCSS | minify | fingerprint}}
+    {{$componentsStyles := resources.Match "scss/components/**"}}
+    <link rel="stylesheet" href="{{ $style.Permalink }}" />
+    {{range $componentsStyles}}
+      {{$componentStyles := . | toCSS | minify | fingerprint}}
+      <link rel="stylesheet" href="{{$componentStyles.Permalink}}">
+    {{end}}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hugo-ts-starter</title>
+    <script defer src="/js/index.js"></script>
+    {{block "scripts" .}}
+    {{end}}
+  </head>
+  <body>
+  <div class="container">
+    <main>
+      {{block "main" .}}
+      {{end}} 
+    </main>
+  </div>
+  {{range .Scratch.GetSortedMapValues "scripts"}}
+    <script defer src="{{.}}"></script>
+  {{end}}
+  </body>
+</html>

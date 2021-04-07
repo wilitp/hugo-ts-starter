@@ -1,0 +1,28 @@
+{
+  "name": "w3-guille-de-ipola.me",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build:ts": "tsc",
+    "build:js": "esbuild --bundle dist/index.js --target=es5 --outdir=./static/js",
+    "build:hugo": "hugo version && hugo --buildDrafts",
+    "build": "npm run build:ts || { rm -rf dist/ static/js ; echo 'No .ts source files' ; npm run build:hugo ; exit 0 ; } && npm run build:js && npm run build:hugo",
+    "start:ts": "tsc -w",
+    "start:js": "esbuild --bundle --watch --target=es5 --outdir=./static/js/ $(find $(pwd)/dist/**.js) ",
+    "start:hugo": "hugo server -D --disableFastRender",
+    "start": "concurrently 'npm run start:ts' 'npm run start:js' 'npm run start:hugo'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "concurrently": "^6.0.0",
+    "esbuild": "^0.9.6",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "lazysizes": "^5.3.1"
+  }
+}

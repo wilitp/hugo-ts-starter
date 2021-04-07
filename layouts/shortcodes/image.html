@@ -1,0 +1,3 @@
+{{$src := .Get "src"}}
+{{$extraClasses := .Get "extraClasses"}}
+{{partial "image.html" (dict "src" (printf "%s" $src) "extraClasses" $extraClasses)}}
