@@ -7,7 +7,7 @@ Simple starter for Hugo websites using Typescript. Also including a partial(and 
 We'll be using [degit](https://github.com/Rich-Harris/degit#readme)
 
 ```bash
-npx degit wilitp/hugo-ts-starter
+npx degit wilitp/hugo-ts-starter my-new-site
 ```
 
 ## Usage
